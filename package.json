@@ -1,0 +1,14 @@
+{
+  "name": "com.overthought-games.smart-fields",
+  "version": "1.0.0",
+  "displayName": "Smart Fields",
+  "description": "Custom fields for additional Unity inspector functionality",
+  "unity": "2020.3",
+  "documentationUrl": "https://github.com/NicolasMorea/Smart-Fields",
+  "changelogUrl": "https://github.com/NicolasMorea/Smart-Fields/releases",
+  "licensesUrl": "https://github.com/NicolasMorea/Smart-Fields/blob/master/LICENSE",
+  "author": {
+    "name": "Overthought Games",
+    "url": "https://github.com/NicolasMorea"
+  }
+}
