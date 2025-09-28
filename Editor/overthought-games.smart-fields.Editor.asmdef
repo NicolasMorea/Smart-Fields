@@ -1,0 +1,21 @@
+{
+    "name": "overthought-games.smart-fields.Editor",
+    "rootNamespace": "",
+    "references": [
+        "GUID:3ebd4d37b4039b845806a8f213d19e38"
+    ],
+    "includePlatforms": [
+        "Editor",
+        "GameCoreXboxOne",
+        "XboxOne",
+        "GameCoreScarlett"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
