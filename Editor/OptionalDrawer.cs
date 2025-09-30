@@ -1,6 +1,6 @@
 /// <summary>
-///* Optional<T> can be used to make a field optional in the inspector.
-///* you can still access the value even if it is not enabled, if you want to get a value only if it is enabled use TryGetValue
+///* The GUI of the Optional<T> struct, a checkbox to enable/disable the field
+///* We grey out the field when disabled
 /// </summary>
 
 #if UNITY_EDITOR
@@ -16,20 +16,6 @@ namespace Og.SmartFields
         {
             return EditorGUI.GetPropertyHeight(property.FindPropertyRelative("value"));
         }
-        // public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
-        // {
-        //     var enabled = property.FindPropertyRelative("enabled");
-        //     var value = property.FindPropertyRelative("value");
-        //     position.width -= 24;
-        //     EditorGUI.BeginDisabledGroup(!enabled.boolValue);
-        //     EditorGUI.PropertyField(position, value, label, true);
-        //     EditorGUI.EndDisabledGroup();
-
-        //     position.x += position.width + 24;
-        //     position.width = position.height = EditorGUI.GetPropertyHeight(enabled);
-        //     position.x -= position.width;
-        //     EditorGUI.PropertyField(position, enabled, GUIContent.none);
-        // }
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             var enabled = property.FindPropertyRelative("enabled");
