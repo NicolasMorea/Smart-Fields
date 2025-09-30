@@ -1,7 +1,6 @@
 /// <summary>
-///* This attribute allows you to specify a enum that will determine whether the property is displayed or not
-///* it needs a string reference to the enum field name, and indices in int format which is not ideal but it works
-///* if there is a problem with the string reference, the editor will break but not the logic with the variables so no bugs
+///* We show the property only if the enum field has one of the specified values
+///* It works with both standard enums and [Flags] enums
 /// </summary>
 
 #if UNITY_EDITOR
@@ -17,8 +16,6 @@ namespace Og.SmartFields
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             EnumDependentFieldAttribute enumAttribute = (EnumDependentFieldAttribute)attribute;
-            // SerializedProperty enumField;
-            // enumField = property.serializedObject.FindProperty(enumAttribute.EnumFieldName);
 
             SerializedProperty enumField = property.serializedObject.FindProperty(enumAttribute.EnumFieldName);
 
