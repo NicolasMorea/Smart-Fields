@@ -28,6 +28,19 @@ namespace Og.SmartFields
 
             if (enumField == null)
             {
+                string rootPath = property.propertyPath;
+                int lastDot = rootPath.LastIndexOf('.');
+                while (lastDot != -1)
+                {
+                    rootPath = rootPath.Substring(0, lastDot);
+                    enumField = property.serializedObject.FindProperty(rootPath + "." + enumAttribute.EnumFieldName);
+                    if (enumField != null) break;
+                    lastDot = rootPath.LastIndexOf('.');
+                }
+            }
+
+            if (enumField == null)
+            {
                 Debug.LogError($"Enum field not found in list element! Expected path: {enumAttribute.EnumFieldName}");
                 EditorGUI.LabelField(position, label.text, "Invalid enum field reference.");
                 return;
@@ -89,6 +102,15 @@ namespace Og.SmartFields
             SerializedProperty enumField;
             enumField = property.serializedObject.FindProperty(enumAttribute.EnumFieldName);
 
+            if (enumField == null)
+            {
+                // Try searching relative to the parent
+                string parentPath = property.propertyPath.Contains(".")
+                    ? property.propertyPath.Substring(0, property.propertyPath.LastIndexOf('.'))
+                    : string.Empty;
+
+                enumField = property.serializedObject.FindProperty(parentPath + "." + enumAttribute.EnumFieldName);
+            }
 
             if (enumField == null || enumField.propertyType != SerializedPropertyType.Enum)
             {
@@ -128,6 +150,9 @@ namespace Og.SmartFields
                     }
                 }
             }
+
+            if (!shouldShow) property.isExpanded = false;
+
             return shouldShow ? EditorGUI.GetPropertyHeight(property, true) : 0;
         }
 
