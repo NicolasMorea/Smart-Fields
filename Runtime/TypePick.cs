@@ -5,6 +5,7 @@
 /// </summary>
 
 using UnityEngine;
+using System;
 
 namespace Og.SmartFields
 {
