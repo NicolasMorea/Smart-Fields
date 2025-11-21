@@ -14,12 +14,22 @@ namespace Og.SmartFields
     {
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
-            return EditorGUI.GetPropertyHeight(property.FindPropertyRelative("value"));
+            var value = property.FindPropertyRelative("value");
+            if (value == null)
+                return EditorGUIUtility.singleLineHeight;
+            return EditorGUI.GetPropertyHeight(value);
         }
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
             var enabled = property.FindPropertyRelative("enabled");
             var value = property.FindPropertyRelative("value");
+
+            // Check for null properties to avoid NullReferenceException
+            if (enabled == null || value == null)
+            {
+                EditorGUI.LabelField(position, label.text, "property not found, is it [Serializable]?");
+                return;
+            }
 
             // Save indent level
             int oldIndent = EditorGUI.indentLevel;
