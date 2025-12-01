@@ -21,5 +21,16 @@ namespace Og.SmartFields
             enabled = true;
         }
         public readonly T TryGetValue => enabled ? value : default;
+
+        public readonly bool GetValue(out T val)
+        {
+            if (enabled)
+            {
+                val = value;
+                return true;
+            }
+            val = default;
+            return false;
+        }
     }
 }
